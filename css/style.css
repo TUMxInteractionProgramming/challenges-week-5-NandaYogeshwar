@@ -21,8 +21,58 @@ body {
     background-color: #F5F5F5;
 }
 
-button, strong {
+button {
     text-transform: uppercase;
+    height: 36px;
+    min-width: 64px;
+    font-size: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 8px;
+    background-color: white;
+    border: none;
+    color: black;
+    border-radius: 4px;
+}
+
+.button-primary {
+    background-color: #3F51B5;
+    color: white;
+}
+
+.button-accent {
+    background-color: #CDDC39;
+    color: black;
+}
+
+.shadow--2dp {
+    box-shadow:  0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+}
+
+.shadow--4dp {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12); 
+}
+
+.shadow--6dp {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+.shadow--16dp {
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
+    0px 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+}
+
+.shadow--24dp {
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* LAYOUT */
@@ -71,12 +121,14 @@ h1 {
 
 h1#left-app-bar {
     padding-left: 72px;
+    z-index: 1;
 }
 
 h1#left-app-bar img {
     position: absolute;
     left: 16px;
     bottom: 0;
+    height: 56px;
 }
 
 h1 a {
@@ -149,7 +201,25 @@ li.selected {
     border-left: 4px solid #3F51B5;
 }
 
+.fab {
+    font-size: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    position: absolute;
+    padding-left: 16px;
+    padding-right: 16px;
+    bottom: 96px;
+    right:8px;
+    /* text-align: center; */
+
+}
+
 /* TAB BAR */
+
+#tab-bar {
+    z-index: 1;
+}
 
 #tab-bar, #chat-bar {
     background-color: white;
@@ -161,15 +231,9 @@ li.selected {
 }
 
 #tab-bar button, #chat-bar button {
-    background-color: white;
-    border: none;
-    font-size: 13px;
     width: 33%;
+    flex-grow: 1; 
     height: 72px;
-    padding: 16px;
-
-    /* flexify the buttons by growing them equally */
-    flex-grow: 1;
 }
 
 #tab-bar button.selected {
@@ -199,7 +263,6 @@ li.selected {
     /* emoji menu */
     /* colors and borders */
     background-color:white;
-    border: 1px solid black;
 
     /* size & alignment */
     position: absolute;
@@ -268,18 +331,17 @@ li.selected {
 .message p {
     background-color: white;
     padding: 16px;
+    box-shadow:  0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 }
 
 .message button {
     /* +5 min. button*/
-    background-color: #CDDC39;
-    color: black;
-    text-transform: uppercase;
-
     /* right/bottom alignment of button */
     position: absolute;
-    right: 8px;
-    bottom: 8px;
+    right: 0;
+    bottom: 0;
 }
 
 .message.own {
