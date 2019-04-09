@@ -24,11 +24,13 @@
 
     <!-- embed external JavaScript file for app interaction -->
     <script src="js/script.js"></script>
+    <!-- embed external JavaScript file for emojis -->
+    <script src="js/emojis-list.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 
 <!-- #8 #channel #onload all channels when the body has loaded -->
-<body onload="listChannels()">
+<body onload="onLoad()">
 
 <!-- channel area -->
 <div class="shadow--16dp" id="channels">
@@ -91,20 +93,20 @@
         </li> -->
        
     </ul>
-    <button class="button-accent fab shadow--6dp"><i class="fas fa-plus"></i></button>
+    <button class="button-accent fab shadow--6dp" onclick="addNewChannel()"><i class="fas fa-plus"></i></button>
     <!-- TAB BAR -->
     <div id="tab-bar" class="shadow--4dp">
-        <button class="selected" id="tab-new" onclick="selectTab('#tab-new')">
+        <button class="selected" id="tab-new" onclick="selectTab('#tab-new', compareNew)">
             <!-- #7  replacing icons -->
             <i class="far fa-lightbulb"></i>
             New
         </button>
-        <button id="tab-trending" onclick="selectTab('#tab-trending')">
+        <button id="tab-trending" onclick="selectTab('#tab-trending', compareTrending)">
             <!-- #7  replacing icons -->
             <i class="fas fa-fire"></i>
             Trending
         </button>
-        <button id="tab-favorites" onclick="selectTab('#tab-favorites')">
+        <button id="tab-favorites" onclick="selectTab('#tab-favorites', compareFavorites)">
             <!-- #7  replacing icons -->
             <i class="fas fa-star"></i>
             Favorites
@@ -115,15 +117,19 @@
 <div id="chat">
 
     <!-- APP BAR for CHANNEL TITLE -->
-    <h1 class="shadow--4dp">
-        <span id="channel-name">#SevenContinents</span>
-        <small id="channel-location">by <strong>cheeses.yard.applies</strong></small>
+    <h1 id="chat-app-bar" class="shadow--4dp">
+        <span id="channel-name">#SevenContinents </span>
+        <small id="channel-location"> by <strong>cheeses.yard.applies</strong></small>
         <!-- #7 star is now font-awesome -->
-        <i class="fas fa-star" onclick="star()"></i>
+        <i id="channel-star" class="fas fa-star" onclick="star()"></i>
+    </h1>
+    <h1 id="new-channel" class="shadow--4dp" style="display: none;">
+        <input type="text" placeholder="New Channel"/>
+        <i class="fas fa-times" onclick="abortNewChannel()"></i><span onclick="abortNewChannel()" id="abort-new-channel">ABORT</span>
     </h1>
 
     <div id="messages">
-
+<!-- 
         <div class="message own">
             <h3><a href="http://w3w.co/cheeses.yard.applies" target="_blank"><strong>cheeses.yard.applies</strong></a>
                 Wed, June 20th, 13:37 <em>15 min. left</em></h3>
@@ -167,7 +173,7 @@
                 Wed, June 20th, 04:08 <em>15 min. left</em></h3>
             <p>北京</p>
             <button class="button-accent">+5 min.</button>
-        </div>
+        </div> -->
 
     </div>
 
@@ -177,12 +183,12 @@
             <!-- #7 replacing icons -->
             <i class="far fa-smile"></i>
         </button>
-        <div class="shadow--24dp" id="emojis">&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div>
+        <div class="shadow--24dp" id="emojis"></div>
         <!-- #8 create a new input element which accepts text and has a prefill as well as a character limit.
                It also gets an id -->
         <input type="text" placeholder="Message..." maxlength="140" id="message">
         <!-- #8 send message requires a button -->
-        <button class="button-accent" onclick="sendMessage()"><i class="fas fa-arrow-right button-accent"></i></button>
+        <button id="button-send" class="button-accent" onclick="sendMessage()"><i class="fas fa-arrow-right button-accent"></i></button>
     </div>
 </div>
 
